@@ -1,33 +1,58 @@
-class HashTable:  
-    def __init__(self):
-        self.MAX = 10
-        self.arr = [[] for i in range(self.MAX)]
+class HashTable:
+    def __init__(self, capacidade):
+        self.tabela = [None] * ((2 * capacidade) + 1)
         
-    def get_hash(self, key):
-        hash = 0
-        for char in key:
-            hash += ord(char)
-        return hash % self.MAX
+    def hash_insert(T, chave) :
+        i = 0
+        j = chave % len(T)
+
+        while i < len(T):
+            if T[j] == None:
+                T[j] = chave
+                print(f"E: {j}")
+            else:
+                i += 1
+                j = (j + 1) % len(T)
+
+        print('Toda memoria utilizada')
+        return 'hashIsFull'
     
-    def get(self, key):
-        arr_index = self.get_hash(key)
-        for kv in self.arr[arr_index]:
-            if kv[0] == key:
-                return kv[1]
-            
-    def set(self, key, val):
-        h = self.get_hash(key)
-        found = False
-        for idx, element in enumerate(self.arr[h]):
-            if len(element)==2 and element[0] == key:
-                self.arr[h][idx] = (key,val)
-                found = True
-        if not found:
-            self.arr[h].append((key,val))
-        
-    def delete(self, key):
-        arr_index = self.get_hash(key)
-        for index, kv in enumerate(self.arr[arr_index]):
-            if kv[0] == key:
-                print("del",index)
-                del self.arr[arr_index][index]
+    def hash_search(T, chave) :
+        i = 0
+        j = chave % len(T)
+
+        while i < len(T):
+            if T[j] == None:
+                return None
+            if T[j] == chave:
+                print(f'E: {j}') # found j
+            else:
+                i += 1
+                j = (j + 1) % len(T)
+
+        print('NE')
+
+
+      
+
+capacidade = int(input())
+myhash = HashTable(capacidade)
+n_commands = int(input())
+
+for x in range(n_commands):
+  entrada = input().split()
+  
+#   if hashFull:
+#     print('Toda memoria utilizada')
+#     break
+  
+  if entrada[0] == 'ADD':
+    myhash.hash_insert(myhash.tabela, int(entrada[1]))
+    
+  
+  elif entrada[0] == 'CAP':
+    pass #capturar espaço de memoria, caso vazio printar D e caso preenchido printar A: esapaço de memoria(classe)
+  
+  else: #entrada[0] == 'SCH'
+    pass #vê se o valor corresponde a alguma chave e, caso pertença, printa essa chave(hasheada), não encontrado: print(NE)
+  
