@@ -14,7 +14,6 @@ class HashTable:
                 i += 1
                 j = (j + 1) % len(T)
 
-        print('Toda memoria utilizada')
         return 'hashIsFull'
     
     def hash_search(T, chave) :
@@ -47,7 +46,6 @@ n_commands = int(input())
 
 for x in range(n_commands):
   entrada = input().split()
-  
   
   if entrada[0] == 'ADD':
     if myhash.hash_insert(myhash.tabela, int(entrada[1])) == 'hashIsFull':
