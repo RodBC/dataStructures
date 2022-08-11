@@ -10,6 +10,7 @@ class HashTable:
             if T[j] == None:
                 T[j] = chave
                 print(f"E: {j}")
+                break
             else:
                 i += 1
                 j = (j + 1) % len(T)
@@ -25,6 +26,7 @@ class HashTable:
                 return None
             if T[j] == chave:
                 print(f'E: {j}') # found j
+                break
             else:
                 i += 1
                 j = (j + 1) % len(T)
